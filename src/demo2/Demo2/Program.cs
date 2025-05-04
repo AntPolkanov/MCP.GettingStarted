@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMcpServer()
+    .WithHttpTransport()
+    .WithToolsFromAssembly();
+
+var app = builder.Build();
+
+app.MapMcp();
+
+app.Run("http://localhost:5000");
