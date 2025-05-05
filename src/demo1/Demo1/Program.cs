@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Demo1.Prompts;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Protocol.Types;
 
@@ -7,6 +8,7 @@ var builder = Host.CreateEmptyApplicationBuilder(null);
 builder.Services.AddMcpServer()
     .WithStdioServerTransport()
     .WithToolsFromAssembly()
+    .WithPrompts<SummaryPrompt>()
     .WithListResourcesHandler(async (ctx, ct) =>
     {
         return new ListResourcesResult
